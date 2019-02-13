@@ -87,7 +87,11 @@ public class PokemonMod extends Mod{
 		try{
 			String url="https://raw.githubusercontent.com/XiaoGeNintendo/public-resource-hut/master/pokemon/list.txt";
 			Scanner s=new Scanner(new URL(url).openStream());
-			String pattern="#"+id+"\t"+name;
+			String sId=""+id;
+			while(sId.size()<3){
+				sId="0"+sId;
+			}
+			String pattern="#"+sId+"\t"+name;
 			System.out.println("Searching pattern:"+pattern);
 			
 			for(int i=0;i<721;i++){
