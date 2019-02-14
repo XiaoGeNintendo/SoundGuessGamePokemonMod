@@ -66,7 +66,7 @@ public class PokemonMod extends Mod{
 			
 			mp.put("POffical Artwork by Sugimori", new URL("https://veekun.com/dex/media/pokemon/sugimori/"+id+".png"));
 			
-			mp.put("PDreamwork Artwork", new URL("https://veekun.com/dex/media/pokemon/dream-world/"+id+".svg"));
+			mp.put("ODreamwork Artwork in SVG format", new URL("https://veekun.com/dex/media/pokemon/dream-world/"+id+".svg"));
 			
 			String sid=""+id;
 			while(sid.length()<3){
