@@ -68,11 +68,16 @@ public class PokemonMod extends Mod{
 			
 			mp.put("PDreamwork Artwork", new URL("https://veekun.com/dex/media/pokemon/dream-world/"+id+".svg"));
 			
+			String sid=""+id;
+			while(sid.length()<3){
+				sid="0"+sid;
+			}
+			
 			if(id<=649){
-				mp.put("PGif Front", new URL("http://media.52poke.com/assets/sprite/b2w2/front/"+id+".gif"));
-				mp.put("PGif Back", new URL("http://media.52poke.com/assets/sprite/gen5/"+id+"b.gif"));
-				mp.put("PGif Front Shiny", new URL("http://media.52poke.com/assets/sprite/b2w2/front_shiny/"+id+".gif"));
-				mp.put("PGif Back Shiny", new URL("http://media.52poke.com/assets/sprite/gen5/"+id+"sb.gif"));
+				mp.put("PGif Front", new URL("http://media.52poke.com/assets/sprite/b2w2/front/"+sid+".gif"));
+				mp.put("PGif Back", new URL("http://media.52poke.com/assets/sprite/gen5/"+sid+"b.gif"));
+				mp.put("PGif Front Shiny", new URL("http://media.52poke.com/assets/sprite/b2w2/front_shiny/"+sid+".gif"));
+				mp.put("PGif Back Shiny", new URL("http://media.52poke.com/assets/sprite/gen5/"+sid+"sb.gif"));
 			}
 			
 			
