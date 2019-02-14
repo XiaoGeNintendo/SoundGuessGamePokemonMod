@@ -1,6 +1,7 @@
 package com.hhs.xgn.soundguess.pkmod;
 
 import java.net.URL;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -85,22 +86,38 @@ public class PokemonMod extends Mod{
 	@Override
 	public boolean isCorrect(int id, String name) {
 		try{
-			String url="https://raw.githubusercontent.com/XiaoGeNintendo/public-resource-hut/master/pokemon/list.txt";
-			Scanner s=new Scanner(new URL(url).openStream());
+			String url="https://raw.githubusercontent.com/XiaoGeNintendo/public-resource-hut/master/pokemon/list_new.txt";
+			Scanner s=new Scanner(new URL(url).openStream(),"utf-8");
 			String sId=""+id;
 			while(sId.length()<3){
 				sId="0"+sId;
 			}
-			String pattern="#"+sId+"\t"+name;
-			System.out.println("Searching pattern:"+pattern);
 			
-			for(int i=0;i<721;i++){
-				if(s.nextLine().trim().equalsIgnoreCase(pattern)){
-					s.close();
-					return true;
-					
+			System.out.println("Pattern:#"+sId);
+			
+			while(s.hasNextLine()){
+				String line=s.nextLine();
+				String[] tokens=line.split("\\t");
+				
+//				System.out.println(Arrays.toString(tokens));
+				if(tokens[0].equals("#"+sId)){
+					if(tokens[1].equalsIgnoreCase(name)||
+							tokens[2].equalsIgnoreCase(name) ||
+							tokens[3].equalsIgnoreCase(name)){
+						System.out.println("Correct Answer");
+						
+						s.close();
+						return true;
+					}else{
+						System.out.println("Expected:"+Arrays.toString(tokens)+" But found "+name);
+						s.close();
+						return false;
+					}
 				}
 			}
+			
+			System.out.println("Failed to find such pattern");
+			
 			s.close();
 			return false;
 		}catch(Exception e){
