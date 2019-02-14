@@ -6,7 +6,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import javax.swing.JOptionPane;
+
 import com.hhs.xgn.soundguess.game.Mod;
+import com.hhs.xgn.soundguess.game.SoundGuess;
 
 @com.hhs.xiaomao.modloader.Mod(modid = "", name = "", version = "")
 public class PokemonMod extends Mod{
@@ -17,10 +20,16 @@ public class PokemonMod extends Mod{
 		return "Pokemon";
 	}
 
+	@SuppressWarnings("unused")
 	@Override
 	public void init() {
+		if(SoundGuess.build<2){
+			JOptionPane.showMessageDialog(null, "Game version should be at least 2.");
+			System.exit(1);
+		}
+		
 		// TODO Auto-generated method stub
-		System.out.println("Pokemon Guess Mod By XGN!");
+		System.out.println("Pokemon Guess Mod For version 2 By XGN!");
 	}
 
 	@Override
@@ -89,7 +98,7 @@ public class PokemonMod extends Mod{
 	}
 
 	@Override
-	public boolean isCorrect(int id, String name) {
+	public String isCorrect(int id, String name) {
 		try{
 			String url="https://raw.githubusercontent.com/XiaoGeNintendo/public-resource-hut/master/pokemon/list_new.txt";
 			Scanner s=new Scanner(new URL(url).openStream(),"utf-8");
@@ -112,11 +121,10 @@ public class PokemonMod extends Mod{
 						System.out.println("Correct Answer");
 						
 						s.close();
-						return true;
+						return "Cok, acceptable answer from "+Arrays.toString(tokens);
 					}else{
-						System.out.println("Expected:"+Arrays.toString(tokens)+" But found "+name);
 						s.close();
-						return false;
+						return "WExpected:"+Arrays.toString(tokens)+" But found "+name;
 					}
 				}
 			}
@@ -124,10 +132,10 @@ public class PokemonMod extends Mod{
 			System.out.println("Failed to find such pattern");
 			
 			s.close();
-			return false;
+			return "UFailed to find such Pokemon with Id";
 		}catch(Exception e){
 			e.printStackTrace();
-			return false;
+			return "UAn Exception occurred:"+e;
 		}
 	}
 	
