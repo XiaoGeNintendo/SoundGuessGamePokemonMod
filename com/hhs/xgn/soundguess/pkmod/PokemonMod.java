@@ -1,11 +1,17 @@
 package com.hhs.xgn.soundguess.pkmod;
 
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import com.hhs.xgn.soundguess.game.Mod;
@@ -17,7 +23,7 @@ public class PokemonMod extends Mod{
 	@Override
 	public int getBuildVersion() {
 		// TODO Auto-generated method stub
-		return 4;
+		return 5;
 	}
 	
 	@Override
@@ -141,4 +147,44 @@ public class PokemonMod extends Mod{
 		}
 	}
 	
+	@Override
+	public void openCustomMenu(SoundGuess self) {
+		JFrame jf=new JFrame("Pokemon Credits");
+		jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		jf.setLayout(new GridLayout(5, 1));
+		
+		JLabel jl=new JLabel("Thx for installing Pokemon Mod!");
+		JLabel jl2=new JLabel("This mod is by XGN from HHS 2019");
+		JLabel jl3=new JLabel("A Pokemon and Development Lover");
+		JLabel jl4=new JLabel("Also the creator of the whole game");
+		JButton jb=new JButton("Get a special prize!");
+		
+		jb.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				try{
+					HashMap<String,URL> hm=new HashMap<String,URL>();
+					hm.put("PAll Starter Pokemon", new URL("https://github.com/XiaoGeNintendo/public-resource-hut/raw/master/pokemon/InitalpokemonList.png"));
+					
+					self.save.acquired.put("Pokemon:Addition", hm);
+					
+					self.saveData();
+					
+					JOptionPane.showMessageDialog(null, "Thanks for playing!\nThe gift was sent to your inventory!\nCheck Pokemon:Addition for it!");
+					
+				}catch(Exception ex){
+					JOptionPane.showMessageDialog(null, "Ahh! A Zzzyt comes and absorbs the prize! :(\nCome and try another day!");
+				}
+			}
+		});
+		jf.add(jl);
+		jf.add(jl2);
+		jf.add(jl3);
+		jf.add(jl4);
+		jf.add(jb);
+		jf.pack();
+		jf.setVisible(true);
+	}
 }
