@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 import com.hhs.xgn.soundguess.game.Mod;
 import com.hhs.xgn.soundguess.game.SoundGuess;
 
-@com.hhs.xiaomao.modloader.Mod(modid = "pkmod", name = "Pokemon", version = "4")
+@com.hhs.xiaomao.modloader.Mod(modid = "pkmod", name = "Pokemon", version = "5")
 public class PokemonMod extends Mod{
 
 	@Override
@@ -37,7 +37,7 @@ public class PokemonMod extends Mod{
 	public void init() {
 		
 		// TODO Auto-generated method stub
-		System.out.println("Pokemon Guess Mod For version 4 By XGN!");
+		System.out.println("Pokemon Guess Mod For version 5 By XGN!");
 	}
 
 	@Override
