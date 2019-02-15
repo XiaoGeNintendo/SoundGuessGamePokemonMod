@@ -11,29 +11,31 @@ import javax.swing.JOptionPane;
 import com.hhs.xgn.soundguess.game.Mod;
 import com.hhs.xgn.soundguess.game.SoundGuess;
 
-@com.hhs.xiaomao.modloader.Mod(modid = "", name = "", version = "")
+@com.hhs.xiaomao.modloader.Mod(modid = "pkmod", name = "Pokemon", version = "4")
 public class PokemonMod extends Mod{
 
+	@Override
+	public int getBuildVersion() {
+		// TODO Auto-generated method stub
+		return 4;
+	}
+	
 	@Override
 	public String getModName() {
 		// TODO Auto-generated method stub
 		return "Pokemon";
 	}
 
-	@SuppressWarnings("unused")
+	
 	@Override
 	public void init() {
-		if(SoundGuess.build<2){
-			JOptionPane.showMessageDialog(null, "Game version should be at least 2.");
-			System.exit(1);
-		}
 		
 		// TODO Auto-generated method stub
-		System.out.println("Pokemon Guess Mod For version 2 By XGN!");
+		System.out.println("Pokemon Guess Mod For version 4 By XGN!");
 	}
 
 	@Override
-	public URL getMusic(int id) {
+	public URL getMusic(SoundGuess self,int id) {
 		// TODO Auto-generated method stub
 		try{
 			return new URL("https://raw.githubusercontent.com/XiaoGeNintendo/public-resource-hut/master/pokemon/cries/mp3/"+id+".ogg.mp3");
@@ -44,7 +46,7 @@ public class PokemonMod extends Mod{
 	}
 
 	@Override
-	public URL getPicture(int id) {
+	public URL getPicture(SoundGuess self,int id) {
 		try{
 			return new URL("https://veekun.com/dex/media/pokemon/main-sprites/ultra-sun-ultra-moon/"+id+".png");
 		}catch(Exception e){
@@ -54,7 +56,7 @@ public class PokemonMod extends Mod{
 	}
 
 	@Override
-	public boolean isIdOk(int id) {
+	public boolean isIdOk(SoundGuess self,int id) {
 		// Always Ok
 		return true;
 	}
@@ -64,12 +66,12 @@ public class PokemonMod extends Mod{
 	 * The picture is 1-807 <br/>
 	 * The voice is 1-721
 	 */
-	public int getLimit() {
+	public int getLimit(SoundGuess self) {
 		return 721; //The maximum pokemon count in Ultra sun and moon
 	}
 
 	@Override
-	public Map<String, URL> onAcquired(int id) {
+	public Map<String, URL> onAcquired(SoundGuess self,int id) {
 		try{
 			Map<String,URL> mp=new HashMap<>();
 			
@@ -98,7 +100,7 @@ public class PokemonMod extends Mod{
 	}
 
 	@Override
-	public String isCorrect(int id, String name) {
+	public String isCorrect(SoundGuess self,int id, String name) {
 		try{
 			String url="https://raw.githubusercontent.com/XiaoGeNintendo/public-resource-hut/master/pokemon/list_new.txt";
 			Scanner s=new Scanner(new URL(url).openStream(),"utf-8");
